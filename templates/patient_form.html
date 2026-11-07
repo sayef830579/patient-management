@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Hospital Patient Form</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/patient_form.css') }}">
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Hospital Patient Form</h2>
+
+        <p>Welcome, {{ full_name }}!</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endwith %}
+
+        <form action="{{ url_for('patient_form') }}"
+              method="POST">
+
+            <label>Patient Name</label>
+
+            <input
+                type="text"
+                name="patient_name"
+                value="{{ full_name }}"
+                required>
+
+            <label>Age</label>
+
+            <input
+                type="number"
+                name="age"
+                placeholder="Enter age"
+                min="1"
+                required>
+
+            <label>Address</label>
+
+            <textarea
+                name="address"
+                placeholder="Enter address"
+                required></textarea>
+
+            <label>Phone No</label>
+
+            <input
+                type="tel"
+                name="phone"
+                placeholder="Enter phone number"
+                required>
+
+            <label>Test</label>
+
+            <input
+                type="text"
+                name="test_name"
+                placeholder="Enter test name"
+                required>
+
+            <label>Amount</label>
+
+            <input
+                type="number"
+                name="amount"
+                placeholder="Enter amount"
+                min="0"
+                step="0.01"
+                required>
+
+            <label>Date</label>
+
+            <input
+                type="date"
+                name="visit_date"
+                required>
+
+            <div class="buttons">
+
+                <button type="submit">Submit</button>
+
+                <button type="button"
+                onclick="window.print()">Print</button>
+
+            </div>
+
+        </form>
+
+        <p>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </p>
+
+    </div>
+
+</body>
+</html>
